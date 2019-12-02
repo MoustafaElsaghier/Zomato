@@ -27,12 +27,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import elsaghier.com.zomato.Adapter.RestaurantAdapter;
-import elsaghier.com.zomato.Model.Restaurant;
+import elsaghier.com.zomato.Model.RestaurantModel;
 
 public class MainActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    ArrayList<Restaurant> mData;
+    ArrayList<RestaurantModel> mData;
     RestaurantAdapter adapter;
 
     @Override
@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         init();
-        mData = new ArrayList<>();
         mData = new ArrayList<>();
         recyclerView = findViewById(R.id.restaurant_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -60,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                             for (int i = 0; i < arr.length(); ++i) {
 
                                 JSONObject obj = arr.getJSONObject(i).getJSONObject("restaurant");
-                                mData.add(new Restaurant(obj.getString("name")
+                                mData.add(new RestaurantModel(obj.getString("name")
                                         , obj.getJSONObject("location").getString("address")
                                         , obj.getJSONObject("user_rating").getString("aggregate_rating")
                                         , obj.getString("average_cost_for_two")

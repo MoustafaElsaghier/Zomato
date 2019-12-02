@@ -14,14 +14,14 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import elsaghier.com.zomato.Model.Restaurant;
+import elsaghier.com.zomato.Model.RestaurantModel;
 
 import static elsaghier.com.zomato.R.id.map;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    Restaurant restaurant;
+    RestaurantModel restaurant;
     TextView res_name, res_rate, res_address;
     ImageView res_img;
 
@@ -29,7 +29,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-        restaurant = (Restaurant) getIntent().getExtras().get("rest_item");
+        restaurant = (RestaurantModel) getIntent().getExtras().get("rest_item");
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(map);
         init();
@@ -38,10 +38,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void init() {
-        res_img = (ImageView) findViewById(R.id.detail_img);
-        res_address = (TextView) findViewById(R.id.detail_address);
-        res_name = (TextView) findViewById(R.id.detail_rest_name);
-        res_rate = (TextView) findViewById(R.id.detail_rating);
+        res_img = findViewById(R.id.detail_img);
+        res_address = findViewById(R.id.detail_address);
+        res_name = findViewById(R.id.detail_rest_name);
+        res_rate = findViewById(R.id.detail_rating);
     }
 
     public void setData() {

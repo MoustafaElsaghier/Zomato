@@ -5,14 +5,14 @@ import java.util.List;
 import elsaghier.com.zomato.Model.Category;
 import retrofit2.Call;
 import retrofit2.http.GET;
-
-/**
- * Created by ELSaghier on 1/25/2018.
- */
+import retrofit2.http.Query;
 
 public interface ApiInterface {
 
     @GET("categories")
     Call<List<Category>> getAllCategories();
+
+    @GET("search")
+    Call<List<Category>> getAllRestaurantsInCategory(@Query("category") String categoryId);
 
 }

@@ -13,16 +13,16 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import elsaghier.com.zomato.MapsActivity;
-import elsaghier.com.zomato.Model.Restaurant;
+import elsaghier.com.zomato.Model.RestaurantModel;
 import elsaghier.com.zomato.R;
 
 
 public class RestaurantAdapter extends RecyclerView.Adapter<elsaghier.com.zomato.Adapter.RestaurantHolder> {
 
-    private ArrayList<Restaurant> mData;
+    private ArrayList<RestaurantModel> mData;
     private Context mContext;
 
-    public RestaurantAdapter(ArrayList<Restaurant> data, Context mContext) {
+    public RestaurantAdapter(ArrayList<RestaurantModel> data, Context mContext) {
         this.mData = data;
         this.mContext = mContext;
     }
@@ -35,7 +35,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<elsaghier.com.zomato
 
     @Override
     public void onBindViewHolder(elsaghier.com.zomato.Adapter.RestaurantHolder holder, int position) {
-        final Restaurant restaurant = mData.get(position);
+        final RestaurantModel restaurant = mData.get(position);
 
         holder.setName(restaurant.getName());
         holder.setAddress(restaurant.getAddress());

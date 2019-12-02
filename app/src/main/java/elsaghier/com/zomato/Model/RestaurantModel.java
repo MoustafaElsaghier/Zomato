@@ -2,10 +2,7 @@ package elsaghier.com.zomato.Model;
 
 import java.io.Serializable;
 
-/**
- * Created by ELSaghier on 7/24/2017.
- */
-public class Restaurant implements Serializable{
+public class RestaurantModel implements Serializable {
     private String name;
     private String address;
     private String rating;
@@ -15,23 +12,6 @@ public class Restaurant implements Serializable{
     private double longitude;
     private double latitiude;
     private String res_id;
-
-    public Restaurant(String name, String address, String rating,
-                      String cost, String imageUrl, String currency, double longitude, double latitiude, String res_id) {
-        this.name = name;
-        this.address = address;
-        this.rating = rating;
-        this.cost = cost;
-        this.imageUrl = imageUrl;
-        this.currency = currency;
-        this.longitude = longitude;
-        this.latitiude = latitiude;
-        this.res_id = res_id;
-    }
-
-    public Restaurant() {
-    }
-
 
     public String getName() {
 
