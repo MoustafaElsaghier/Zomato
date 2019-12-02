@@ -1,4 +1,4 @@
-# `Zomato API consuming`
+### `Zomato API consuming`
 
 It is simple app that works to display popular restaurant in specified location. 
 
