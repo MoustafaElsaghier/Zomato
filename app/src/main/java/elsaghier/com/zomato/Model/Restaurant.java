@@ -1,4 +1,4 @@
-package friendlychat.elsaghier.example.com.zomato.Model;
+package elsaghier.com.zomato.Model;
 
 import java.io.Serializable;
 

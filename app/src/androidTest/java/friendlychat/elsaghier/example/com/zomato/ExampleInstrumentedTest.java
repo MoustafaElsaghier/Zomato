@@ -1,4 +1,4 @@
-package friendlychat.elsaghier.example.com.zomato;
+package elsaghier.com.zomato;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("friendlychat.elsaghier.example.com.zomato", appContext.getPackageName());
+        assertEquals("elsaghier.com.zomato", appContext.getPackageName());
     }
 }

@@ -1,4 +1,4 @@
-package friendlychat.elsaghier.example.com.zomato;
+package elsaghier.com.zomato;
 
 import org.junit.Test;
 

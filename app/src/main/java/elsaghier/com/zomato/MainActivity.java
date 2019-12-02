@@ -1,4 +1,4 @@
-package friendlychat.elsaghier.example.com.zomato;
+package elsaghier.com.zomato;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,8 +26,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import friendlychat.elsaghier.example.com.zomato.Adapter.RestaurantAdapter;
-import friendlychat.elsaghier.example.com.zomato.Model.Restaurant;
+import elsaghier.com.zomato.Adapter.RestaurantAdapter;
+import elsaghier.com.zomato.Model.Restaurant;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,12 +39,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         init();
         mData = new ArrayList<>();
         mData = new ArrayList<>();
-        recyclerView = (RecyclerView) findViewById(R.id.restaurant_recycler);
+        recyclerView = findViewById(R.id.restaurant_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void init() {
         mData = new ArrayList<>();
-        recyclerView = (RecyclerView) findViewById(R.id.restaurant_recycler);
+        recyclerView = findViewById(R.id.restaurant_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 

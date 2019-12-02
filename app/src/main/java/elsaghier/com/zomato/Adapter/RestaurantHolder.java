@@ -1,11 +1,11 @@
-package friendlychat.elsaghier.example.com.zomato.Adapter;
+package elsaghier.com.zomato.Adapter;
 
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import friendlychat.elsaghier.example.com.zomato.R;
+import elsaghier.com.zomato.R;
 
 
 class RestaurantHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

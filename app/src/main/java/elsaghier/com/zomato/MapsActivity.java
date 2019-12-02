@@ -1,4 +1,4 @@
-package friendlychat.elsaghier.example.com.zomato;
+package elsaghier.com.zomato;
 
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -14,9 +14,9 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import friendlychat.elsaghier.example.com.zomato.Model.Restaurant;
+import elsaghier.com.zomato.Model.Restaurant;
 
-import static friendlychat.elsaghier.example.com.zomato.R.id.map;
+import static elsaghier.com.zomato.R.id.map;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 

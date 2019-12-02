@@ -1,25 +1,23 @@
-package friendlychat.elsaghier.example.com.zomato.Adapter;
+package elsaghier.com.zomato.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
-
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-import friendlychat.elsaghier.example.com.zomato.MapsActivity;
-import friendlychat.elsaghier.example.com.zomato.Model.Restaurant;
-import friendlychat.elsaghier.example.com.zomato.R;
+import elsaghier.com.zomato.MapsActivity;
+import elsaghier.com.zomato.Model.Restaurant;
+import elsaghier.com.zomato.R;
 
 
-public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantHolder> {
+public class RestaurantAdapter extends RecyclerView.Adapter<elsaghier.com.zomato.Adapter.RestaurantHolder> {
 
     private ArrayList<Restaurant> mData;
     private Context mContext;
@@ -30,13 +28,13 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantHolder> {
     }
 
     @Override
-    public RestaurantHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public elsaghier.com.zomato.Adapter.RestaurantHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_item, parent, false);
-        return new RestaurantHolder(view);
+        return new elsaghier.com.zomato.Adapter.RestaurantHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(RestaurantHolder holder, int position) {
+    public void onBindViewHolder(elsaghier.com.zomato.Adapter.RestaurantHolder holder, int position) {
         final Restaurant restaurant = mData.get(position);
 
         holder.setName(restaurant.getName());
