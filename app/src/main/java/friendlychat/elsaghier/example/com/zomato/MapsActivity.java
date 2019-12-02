@@ -1,17 +1,18 @@
 package friendlychat.elsaghier.example.com.zomato;
 
 import android.os.Bundle;
-import androidx.fragment.app.FragmentActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.fragment.app.FragmentActivity;
+
+import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.squareup.picasso.Picasso;
 
 import friendlychat.elsaghier.example.com.zomato.Model.Restaurant;
 
@@ -50,10 +51,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (restaurant.getImageUrl().isEmpty())
             res_img.setImageResource(R.mipmap.ic_launcher);
         else
-            Picasso.with(this)
-                    .load(restaurant.getImageUrl())
-                    .placeholder(R.mipmap.ic_launcher)
-                    .into(res_img);
+            Glide.with(this).load(restaurant.getImageUrl()).into(res_img);
+
     }
 
 

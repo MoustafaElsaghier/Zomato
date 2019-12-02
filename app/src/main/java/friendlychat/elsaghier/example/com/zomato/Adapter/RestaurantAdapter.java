@@ -2,11 +2,14 @@ package friendlychat.elsaghier.example.com.zomato.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -43,10 +46,9 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantHolder> {
         if (restaurant.getImageUrl().isEmpty())
             holder.restaurantImg.setImageResource(R.mipmap.ic_launcher);
         else
-            Picasso.with(mContext)
-                    .load(restaurant.getImageUrl())
-                    .placeholder(R.mipmap.ic_launcher)
-                    .into(holder.restaurantImg);
+            Glide.with(mContext).load(restaurant.getImageUrl()).into(holder.restaurantImg);
+
+
         holder.setItemClick(new RecyclerItemClick() {
             @Override
             public void onItemClicked(int pos) {
