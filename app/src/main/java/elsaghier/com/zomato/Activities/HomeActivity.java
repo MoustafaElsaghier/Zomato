@@ -1,4 +1,4 @@
-package elsaghier.com.zomato;
+package elsaghier.com.zomato.Activities;
 
 import android.os.Bundle;
 
@@ -12,6 +12,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import elsaghier.com.zomato.Adapter.CategoryAdapter;
 import elsaghier.com.zomato.Model.CategoryModel;
+import elsaghier.com.zomato.R;
 
 public class HomeActivity extends AppCompatActivity {
 

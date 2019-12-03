@@ -1,4 +1,4 @@
-package elsaghier.com.zomato;
+package elsaghier.com.zomato.Activities;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +28,7 @@ import java.util.Map;
 
 import elsaghier.com.zomato.Adapter.RestaurantAdapter;
 import elsaghier.com.zomato.Model.RestaurantModel;
+import elsaghier.com.zomato.R;
 
 public class MainActivity extends AppCompatActivity {
 

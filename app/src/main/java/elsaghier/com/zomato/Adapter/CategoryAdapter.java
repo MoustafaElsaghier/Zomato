@@ -17,7 +17,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import elsaghier.com.zomato.MainActivity;
+import elsaghier.com.zomato.Activities.MainActivity;
 import elsaghier.com.zomato.Model.CategoryModel;
 import elsaghier.com.zomato.R;
 

@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
-import elsaghier.com.zomato.MapsActivity;
+import elsaghier.com.zomato.Activities.MapsActivity;
 import elsaghier.com.zomato.Model.RestaurantModel;
 import elsaghier.com.zomato.R;
 

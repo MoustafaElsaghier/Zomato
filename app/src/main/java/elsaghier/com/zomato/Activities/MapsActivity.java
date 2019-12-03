@@ -1,4 +1,4 @@
-package elsaghier.com.zomato;
+package elsaghier.com.zomato.Activities;
 
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -15,6 +15,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import elsaghier.com.zomato.Model.RestaurantModel;
+import elsaghier.com.zomato.R;
 
 import static elsaghier.com.zomato.R.id.map;
 
