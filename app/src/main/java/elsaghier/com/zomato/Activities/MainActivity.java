@@ -9,9 +9,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
-
 import java.util.ArrayList;
 
 import elsaghier.com.zomato.Adapter.RestaurantAdapter;
@@ -36,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
-        RequestQueue queue = Volley.newRequestQueue(this);
+
+//        RequestQueue queue = Volley.newRequestQueue(this);
         String url = "https://developers.zomato.com/api/v2.1/search?lat=-33.92127&lon=18.4180213&count=10";
 //        JsonObjectRequest postRequest = new JsonObjectRequest(Request.Method.GET, url, null,
 //                new Response.Listener<JSONObject>() {
