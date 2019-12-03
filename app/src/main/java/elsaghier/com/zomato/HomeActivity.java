@@ -1,23 +1,41 @@
 package elsaghier.com.zomato;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import elsaghier.com.zomato.Adapter.CategoryAdapter;
 import elsaghier.com.zomato.Model.CategoryModel;
 
 public class HomeActivity extends AppCompatActivity {
 
     ArrayList<CategoryModel> categoryModels;
     CategoryModel model;
+    @BindView(R.id.category_recycler)
+    RecyclerView categoryRecycler;
+
+    CategoryAdapter categoryAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        ButterKnife.bind(this);
+
         fillCategoryList();
+        initRecyclerView();
+    }
+
+    private void initRecyclerView() {
+        categoryRecycler.setHasFixedSize(true);
+        categoryRecycler.setLayoutManager(new GridLayoutManager(this, 2));
+        categoryRecycler.setAdapter(categoryAdapter);
     }
 
     private void fillCategoryList() {
@@ -39,13 +57,13 @@ public class HomeActivity extends AppCompatActivity {
         model = new CategoryModel();
         model.setCategoryId("4");
         model.setCategoryName("Catching");
-        model.setImageRes(R.drawable.ic_catch_up);
+        model.setImageRes(R.drawable.ic_night_life);
         categoryModels.add(model);
 
         model = new CategoryModel();
         model.setCategoryId("5");
         model.setCategoryName("Takeaway");
-        model.setImageRes(R.drawable.ic_takeaway);
+        model.setImageRes(R.drawable.ic_night_life);
         categoryModels.add(model);
 
         model = new CategoryModel();
@@ -57,32 +75,33 @@ public class HomeActivity extends AppCompatActivity {
         model = new CategoryModel();
         model.setCategoryId("7");
         model.setCategoryName("Daily Menus");
-        model.setImageRes(R.drawable.ic_menu);
+        model.setImageRes(R.drawable.ic_night_life);
         categoryModels.add(model);
 
         model = new CategoryModel();
         model.setCategoryId("11");
         model.setCategoryName("Pubs & Bars");
-        model.setImageRes(R.drawable.ic_bars);
+        model.setImageRes(R.drawable.ic_cafe);
         categoryModels.add(model);
 
         model = new CategoryModel();
         model.setCategoryId("8");
         model.setCategoryName("Breakfast");
-        model.setImageRes(R.drawable.ic_breakfast);
+        model.setImageRes(R.drawable.ic_cafe);
         categoryModels.add(model);
 
         model = new CategoryModel();
         model.setCategoryId("9");
         model.setCategoryName("Lunch");
-        model.setImageRes(R.drawable.ic_launch);
+        model.setImageRes(R.drawable.ic_night_life);
         categoryModels.add(model);
 
         model = new CategoryModel();
         model.setCategoryId("10");
         model.setCategoryName("Dinner");
-        model.setImageRes(R.drawable.ic_dinner);
+        model.setImageRes(R.drawable.ic_cafe);
         categoryModels.add(model);
 
+        categoryAdapter = new CategoryAdapter(this, categoryModels);
     }
 }

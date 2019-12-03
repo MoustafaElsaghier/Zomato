@@ -1,15 +1,23 @@
 package elsaghier.com.zomato.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import elsaghier.com.zomato.MainActivity;
 import elsaghier.com.zomato.Model.CategoryModel;
 import elsaghier.com.zomato.R;
 
@@ -43,7 +51,8 @@ public class CategoryAdapter extends
     public void onBindViewHolder(ViewHolder holder, int position) {
         CategoryModel item = list.get(position);
 
-        //Todo: Setup viewholder for item 
+        holder.textView.setText(item.getCategoryName());
+        Glide.with(context).load(item.getImageRes()).into(holder.categoryImage);
         holder.bind(item);
     }
 
@@ -54,7 +63,11 @@ public class CategoryAdapter extends
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        // Todo Butterknife bindings
+
+        @BindView(R.id.category_image)
+        ImageView categoryImage;
+        @BindView(R.id.textView)
+        TextView textView;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -63,11 +76,10 @@ public class CategoryAdapter extends
         }
 
         void bind(final CategoryModel model) {
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // handle item view click here
-                }
+            itemView.setOnClickListener(v -> {
+                Intent intent = new Intent(context, MainActivity.class);
+                intent.putExtra("category_id", model.getCategoryId());
+                context.startActivity(intent);
             });
         }
     }
