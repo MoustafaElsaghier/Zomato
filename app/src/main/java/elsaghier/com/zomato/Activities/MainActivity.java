@@ -4,16 +4,24 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import elsaghier.com.zomato.Adapter.RestaurantAdapter;
+import elsaghier.com.zomato.Model.CategoryModel;
 import elsaghier.com.zomato.Model.RestaurantModel;
+import elsaghier.com.zomato.Network.ApiClient;
+import elsaghier.com.zomato.Network.ApiInterface;
 import elsaghier.com.zomato.R;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,7 +41,24 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
+        String categoryId = getIntent().getStringExtra("category_id");
 
+        ApiInterface apiService =
+                ApiClient.getClient().create(ApiInterface.class);
+        Call<List<CategoryModel>> call = apiService.getAllRestaurantsInCategory(categoryId);
+
+        call.enqueue(new Callback<List<CategoryModel>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<CategoryModel>> call,
+                                   @NonNull Response<List<CategoryModel>> response) {
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<CategoryModel>> call, @NonNull Throwable t) {
+
+            }
+        });
 //        RequestQueue queue = Volley.newRequestQueue(this);
         String url = "https://developers.zomato.com/api/v2.1/search?lat=-33.92127&lon=18.4180213&count=10";
 //        JsonObjectRequest postRequest = new JsonObjectRequest(Request.Method.GET, url, null,
