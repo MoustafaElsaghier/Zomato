@@ -1,8 +1,10 @@
 package elsaghier.com.zomato.Activities;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,80 +38,30 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         init();
-        mData = new ArrayList<>();
-        recyclerView = findViewById(R.id.restaurant_recycler);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setHasFixedSize(true);
 
         String categoryId = getIntent().getStringExtra("category_id");
 
-        ApiInterface apiService =
-                ApiClient.getClient().create(ApiInterface.class);
-        Call<List<CategoryModel>> call = apiService.getAllRestaurantsInCategory(categoryId);
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
 
-        call.enqueue(new Callback<List<CategoryModel>>() {
+        Call<ArrayList<RestaurantModel>> call = apiService.getAllRestaurantsInCategory(categoryId);
+
+        call.enqueue(new Callback<ArrayList<RestaurantModel>>() {
             @Override
-            public void onResponse(@NonNull Call<List<CategoryModel>> call,
-                                   @NonNull Response<List<CategoryModel>> response) {
+            public void onResponse(@NonNull Call<ArrayList<RestaurantModel>> call,
+                                   @NonNull Response<ArrayList<RestaurantModel>> response) {
 
+                mData = response.body();
+                adapter = new RestaurantAdapter(mData, MainActivity.this);
+                recyclerView.setAdapter(adapter);
             }
 
             @Override
-            public void onFailure(@NonNull Call<List<CategoryModel>> call, @NonNull Throwable t) {
-
+            public void onFailure(@NonNull Call<ArrayList<RestaurantModel>> call, @NonNull Throwable t) {
+                Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                Log.e("Error of call ", t.getMessage());
             }
         });
-//        RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "https://developers.zomato.com/api/v2.1/search?lat=-33.92127&lon=18.4180213&count=10";
-//        JsonObjectRequest postRequest = new JsonObjectRequest(Request.Method.GET, url, null,
-//                new Response.Listener<JSONObject>() {
-//                    @Override
-//                    public void onResponse(JSONObject response) {
-//                        try {
-//                            JSONArray arr = response.getJSONArray("restaurants");
-//
-//                            for (int i = 0; i < arr.length(); ++i) {
-//
-////                                JSONObject obj = arr.getJSONObject(i).getJSONObject("restaurant");
-////                                mData.add(new RestaurantModel(obj.getString("name")
-////                                        , obj.getJSONObject("location").getString("address")
-////                                        , obj.getJSONObject("user_rating").getString("aggregate_rating")
-////                                        , obj.getString("average_cost_for_two")
-////                                        , obj.getString("thumb")
-////                                        , obj.getString("currency")
-////                                        , obj.getJSONObject("location").getDouble("longitude")
-////                                        , obj.getJSONObject("location").getDouble("latitude")
-////                                        , obj.getJSONObject("R").getString("res_id")));
-//                            }
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-//
-//                        adapter = new RestaurantAdapter(mData, MainActivity.this);
-//                        recyclerView.setAdapter(adapter);
-//                        Log.d("Response", response.toString());
-//                    }
-//                },
-//                new Response.ErrorListener() {
-//                    @Override
-//                    public void onErrorResponse(VolleyError error) {
-//                        Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
-//                        Log.d("ERROR", "error => " + error.toString());
-//                    }
-//                }
-//        ) {
-//            @Override
-//            public Map<String, String> getHeaders() throws AuthFailureError {
-//                Map<String, String> params = new HashMap<>();
-//                params.put("user-key", "55a1d18014dd0c0dac534c02598a3368");
-//                params.put("Accept", "application/json");
-//
-//                return params;
-//            }
-//        };
-//        queue.add(postRequest);
-        adapter = new RestaurantAdapter(mData, this);
-        recyclerView.setAdapter(adapter);
+
     }
 
 
