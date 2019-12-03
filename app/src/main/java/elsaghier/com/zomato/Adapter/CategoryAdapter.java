@@ -79,6 +79,7 @@ public class CategoryAdapter extends
             itemView.setOnClickListener(v -> {
                 Intent intent = new Intent(context, MainActivity.class);
                 intent.putExtra("category_id", model.getCategoryId());
+                intent.putExtra("category_name", model.getCategoryName());
                 context.startActivity(intent);
             });
         }

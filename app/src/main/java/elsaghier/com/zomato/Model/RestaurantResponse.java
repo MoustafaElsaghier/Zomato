@@ -12,6 +12,7 @@ public class RestaurantResponse {
     private Long mResultsShown;
     @SerializedName("results_start")
     private Long mResultsStart;
+
     public Long getmResultsFound() {
         return mResultsFound;
     }
@@ -45,5 +46,5 @@ public class RestaurantResponse {
     }
 
     @SerializedName("restaurants")
-    ArrayList<RestaurantModel> restaurantModels;
+    private ArrayList<RestaurantModel> restaurantModels;
 }

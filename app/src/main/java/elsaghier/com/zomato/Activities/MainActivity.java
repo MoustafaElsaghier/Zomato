@@ -18,6 +18,7 @@ import java.util.List;
 import elsaghier.com.zomato.Adapter.RestaurantAdapter;
 import elsaghier.com.zomato.Model.CategoryModel;
 import elsaghier.com.zomato.Model.RestaurantModel;
+import elsaghier.com.zomato.Model.RestaurantResponse;
 import elsaghier.com.zomato.Network.ApiClient;
 import elsaghier.com.zomato.Network.ApiInterface;
 import elsaghier.com.zomato.R;
@@ -37,26 +38,32 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         init();
 
         String categoryId = getIntent().getStringExtra("category_id");
+        String categoryName = getIntent().getStringExtra("category_name");
+        getSupportActionBar().setTitle(categoryName);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
 
-        Call<ArrayList<RestaurantModel>> call = apiService.getAllRestaurantsInCategory(categoryId);
+        Call<RestaurantResponse> call = apiService.getAllRestaurantsInCategory(categoryId);
 
-        call.enqueue(new Callback<ArrayList<RestaurantModel>>() {
+        call.enqueue(new Callback<RestaurantResponse>() {
             @Override
-            public void onResponse(@NonNull Call<ArrayList<RestaurantModel>> call,
-                                   @NonNull Response<ArrayList<RestaurantModel>> response) {
+            public void onResponse(@NonNull Call<RestaurantResponse> call,
+                                   @NonNull Response<RestaurantResponse> response) {
 
-                mData = response.body();
-                adapter = new RestaurantAdapter(mData, MainActivity.this);
-                recyclerView.setAdapter(adapter);
+                if (response.body() != null) {
+                    mData = response.body().getRestaurantModels();
+                    adapter = new RestaurantAdapter(mData, MainActivity.this);
+                    recyclerView.setAdapter(adapter);
+                }
             }
 
             @Override
-            public void onFailure(@NonNull Call<ArrayList<RestaurantModel>> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<RestaurantResponse> call, @NonNull Throwable t) {
                 Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
                 Log.e("Error of call ", t.getMessage());
             }

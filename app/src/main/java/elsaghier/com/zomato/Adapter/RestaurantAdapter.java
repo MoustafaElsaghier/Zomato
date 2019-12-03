@@ -37,16 +37,16 @@ public class RestaurantAdapter extends RecyclerView.Adapter<elsaghier.com.zomato
 
     @Override
     public void onBindViewHolder(elsaghier.com.zomato.Adapter.RestaurantHolder holder, int position) {
-        final RestaurantModel restaurant = mData.get(position);
+        final RestaurantModel.Restaurant restaurant = mData.get(position).getRestaurant();
 
         holder.setName(restaurant.getName());
-        holder.setAddress(restaurant.getAddress());
-        holder.setCost("Average cost for 2:  " + restaurant.getCost() + restaurant.getCurrency());
-        holder.setRating(restaurant.getRating());
-        if (restaurant.getImageUrl().isEmpty())
+        holder.setAddress(restaurant.getLocation().getAddress());
+        holder.setCost("Cuisines :  " + restaurant.getCuisines() + restaurant.getCurrency());
+        holder.setRating(restaurant.getUserRating().getAggregateRating());
+        if (restaurant.getPhotos().get(0).getPhoto().getUrl().isEmpty())
             holder.restaurantImg.setImageResource(R.mipmap.ic_launcher);
         else
-            Glide.with(mContext).load(restaurant.getImageUrl()).into(holder.restaurantImg);
+            Glide.with(mContext).load(restaurant.getPhotos().get(0).getPhoto().getUrl()).into(holder.restaurantImg);
 
 
         holder.setItemClick(new RecyclerItemClick() {

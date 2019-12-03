@@ -1,80 +1,321 @@
 package elsaghier.com.zomato.Model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
+import java.util.List;
 
 public class RestaurantModel implements Serializable {
-    private String name;
-    private String address;
-    private String rating;
-    private String cost;
-    private String imageUrl;
-    private String currency;
-    private double longitude;
-    private double latitiude;
-    private String res_id;
+    @SerializedName("restaurant")
+    @Expose
+    private Restaurant restaurant;
 
-    public String getName() {
-
-        return name;
+    public Restaurant getRestaurant() {
+        return restaurant;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
-    public String getAddress() {
-        return address;
+    public class Location {
+
+        @SerializedName("address")
+        @Expose
+        private String address;
+        @SerializedName("locality")
+        @Expose
+        private String locality;
+        @SerializedName("city")
+        @Expose
+        private String city;
+        @SerializedName("city_id")
+        @Expose
+        private Integer cityId;
+        @SerializedName("latitude")
+        @Expose
+        private String latitude;
+        @SerializedName("longitude")
+        @Expose
+        private String longitude;
+        @SerializedName("country_id")
+        @Expose
+        private Integer countryId;
+        @SerializedName("locality_verbose")
+        @Expose
+        private String localityVerbose;
+
+        public String getAddress() {
+            return address;
+        }
+
+        public void setAddress(String address) {
+            this.address = address;
+        }
+
+        public String getLocality() {
+            return locality;
+        }
+
+        public void setLocality(String locality) {
+            this.locality = locality;
+        }
+
+        public String getCity() {
+            return city;
+        }
+
+        public void setCity(String city) {
+            this.city = city;
+        }
+
+        public Integer getCityId() {
+            return cityId;
+        }
+
+        public void setCityId(Integer cityId) {
+            this.cityId = cityId;
+        }
+
+        public String getLatitude() {
+            return latitude;
+        }
+
+        public void setLatitude(String latitude) {
+            this.latitude = latitude;
+        }
+
+        public String getLongitude() {
+            return longitude;
+        }
+
+        public void setLongitude(String longitude) {
+            this.longitude = longitude;
+        }
+
+        public Integer getCountryId() {
+            return countryId;
+        }
+
+        public void setCountryId(Integer countryId) {
+            this.countryId = countryId;
+        }
+
+        public String getLocalityVerbose() {
+            return localityVerbose;
+        }
+
+        public void setLocalityVerbose(String localityVerbose) {
+            this.localityVerbose = localityVerbose;
+        }
+
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public class Photo {
+
+        @SerializedName("photo")
+        @Expose
+        private Photo_ photo;
+
+        public Photo_ getPhoto() {
+            return photo;
+        }
+
+        public void setPhoto(Photo_ photo) {
+            this.photo = photo;
+        }
+
     }
 
-    public String getRating() {
-        return rating;
+    public class Photo_ {
+
+        @SerializedName("id")
+        @Expose
+        private String id;
+        @SerializedName("url")
+        @Expose
+        private String url;
+        @SerializedName("thumb_url")
+        @Expose
+        private String thumbUrl;
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getUrl() {
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
+
+        public String getThumbUrl() {
+            return thumbUrl;
+        }
+
+        public void setThumbUrl(String thumbUrl) {
+            this.thumbUrl = thumbUrl;
+        }
+
     }
 
-    public void setRating(String rating) {
-        this.rating = rating;
+    public class Restaurant implements Serializable{
+
+        @SerializedName("id")
+        @Expose
+        private String id;
+        @SerializedName("name")
+        @Expose
+        private String name;
+        @SerializedName("location")
+        @Expose
+        private Location location;
+        @SerializedName("cuisines")
+        @Expose
+        private String cuisines;
+        @SerializedName("timings")
+        @Expose
+        private String timings;
+        @SerializedName("currency")
+        @Expose
+        private String currency;
+        @SerializedName("thumb")
+        @Expose
+        private String thumb;
+        @SerializedName("user_rating")
+        @Expose
+        private UserRating userRating;
+        @SerializedName("photos")
+        @Expose
+        private List<Photo> photos = null;
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public Location getLocation() {
+            return location;
+        }
+
+        public void setLocation(Location location) {
+            this.location = location;
+        }
+
+        public String getCuisines() {
+            return cuisines;
+        }
+
+        public void setCuisines(String cuisines) {
+            this.cuisines = cuisines;
+        }
+
+        public String getTimings() {
+            return timings;
+        }
+
+        public void setTimings(String timings) {
+            this.timings = timings;
+        }
+
+        public String getCurrency() {
+            return currency;
+        }
+
+        public void setCurrency(String currency) {
+            this.currency = currency;
+        }
+
+        public String getThumb() {
+            return thumb;
+        }
+
+        public void setThumb(String thumb) {
+            this.thumb = thumb;
+        }
+
+        public UserRating getUserRating() {
+            return userRating;
+        }
+
+        public void setUserRating(UserRating userRating) {
+            this.userRating = userRating;
+        }
+
+        public List<Photo> getPhotos() {
+            return photos;
+        }
+
+        public void setPhotos(List<Photo> photos) {
+            this.photos = photos;
+        }
+
     }
 
-    public String getCost() {
-        return cost;
-    }
+    public class UserRating {
 
-    public void setCost(String cost) {
-        this.cost = cost;
-    }
+        @SerializedName("aggregate_rating")
+        @Expose
+        private String aggregateRating;
+        @SerializedName("rating_text")
+        @Expose
+        private String ratingText;
+        @SerializedName("rating_color")
+        @Expose
+        private String ratingColor;
+        @SerializedName("votes")
+        @Expose
+        private String votes;
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
+        public String getAggregateRating() {
+            return aggregateRating;
+        }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
+        public void setAggregateRating(String aggregateRating) {
+            this.aggregateRating = aggregateRating;
+        }
 
-    public String getCurrency() {
-        return currency;
-    }
+        public String getRatingText() {
+            return ratingText;
+        }
 
-    public void setCurrency(String currency) {
-        this.currency = currency;
-    }
+        public void setRatingText(String ratingText) {
+            this.ratingText = ratingText;
+        }
 
-    public double getLongitude() {
-        return longitude;
-    }
+        public String getRatingColor() {
+            return ratingColor;
+        }
 
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
+        public void setRatingColor(String ratingColor) {
+            this.ratingColor = ratingColor;
+        }
 
-    public double getLatitiude() {
-        return latitiude;
-    }
+        public String getVotes() {
+            return votes;
+        }
 
-    public void setLatitiude(double latitiude) {
-        this.latitiude = latitiude;
+        public void setVotes(String votes) {
+            this.votes = votes;
+        }
+
     }
 }

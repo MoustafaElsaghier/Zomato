@@ -22,7 +22,7 @@ import static elsaghier.com.zomato.R.id.map;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    RestaurantModel restaurant;
+    RestaurantModel.Restaurant restaurant;
     TextView res_name, res_rate, res_address;
     ImageView res_img;
 
@@ -30,7 +30,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-        restaurant = (RestaurantModel) getIntent().getExtras().get("rest_item");
+        restaurant = (RestaurantModel.Restaurant) getIntent().getExtras().get("rest_item");
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(map);
         init();
@@ -46,13 +46,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void setData() {
-        res_address.setText(restaurant.getAddress());
-        res_rate.setText(restaurant.getRating());
+        res_address.setText(restaurant.getLocation().getAddress());
+        res_rate.setText(restaurant.getUserRating().getRatingText());
         res_name.setText(restaurant.getName());
-        if (restaurant.getImageUrl().isEmpty())
+        if (restaurant.getPhotos().get(0).getPhoto().getUrl().isEmpty())
             res_img.setImageResource(R.mipmap.ic_launcher);
         else
-            Glide.with(this).load(restaurant.getImageUrl()).into(res_img);
+            Glide.with(this).load(restaurant.getPhotos().get(0).getPhoto().getUrl()).into(res_img);
 
     }
 
@@ -62,7 +62,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(restaurant.getLatitiude(), restaurant.getLongitude());
+        LatLng sydney = new LatLng(Double.parseDouble(restaurant.getLocation().getLatitude()),
+                Double.parseDouble(restaurant.getLocation().getLongitude()));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 18.0f));
         mMap.addMarker(new MarkerOptions()
                 .title(restaurant.getName())
