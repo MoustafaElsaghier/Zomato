@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -13,10 +15,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import elsaghier.com.zomato.Adapter.RestaurantAdapter;
-import elsaghier.com.zomato.Model.CategoryModel;
 import elsaghier.com.zomato.Model.RestaurantModel;
 import elsaghier.com.zomato.Model.RestaurantResponse;
 import elsaghier.com.zomato.Network.ApiClient;
@@ -28,17 +30,22 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    RecyclerView recyclerView;
     ArrayList<RestaurantModel> mData;
     RestaurantAdapter adapter;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.restaurant_recycler)
+    RecyclerView restaurantRecycler;
+    @BindView(R.id.progressBar)
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        ButterKnife.bind(this);
 
+        setSupportActionBar(toolbar);
         init();
 
         String categoryId = getIntent().getStringExtra("category_id");
@@ -54,16 +61,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(@NonNull Call<RestaurantResponse> call,
                                    @NonNull Response<RestaurantResponse> response) {
-
+                progressBar.setVisibility(View.GONE);
                 if (response.body() != null) {
+
                     mData = response.body().getRestaurantModels();
                     adapter = new RestaurantAdapter(mData, MainActivity.this);
-                    recyclerView.setAdapter(adapter);
+                    restaurantRecycler.setAdapter(adapter);
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<RestaurantResponse> call, @NonNull Throwable t) {
+                progressBar.setVisibility(View.GONE);
                 Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
                 Log.e("Error of call ", t.getMessage());
             }
@@ -74,12 +83,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void init() {
         mData = new ArrayList<>();
-        recyclerView = findViewById(R.id.restaurant_recycler);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setHasFixedSize(true);
+        restaurantRecycler.setLayoutManager(new LinearLayoutManager(this));
+        restaurantRecycler.setHasFixedSize(true);
 
         adapter = new RestaurantAdapter(mData, this);
-        recyclerView.setAdapter(adapter);
+        restaurantRecycler.setAdapter(adapter);
 
     }
 

@@ -17,10 +17,8 @@ import elsaghier.com.zomato.R;
 public class HomeActivity extends AppCompatActivity {
 
     ArrayList<CategoryModel> categoryModels;
-    CategoryModel model;
     @BindView(R.id.category_recycler)
     RecyclerView categoryRecycler;
-
     CategoryAdapter categoryAdapter;
 
     @Override
