@@ -32,8 +32,6 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList<RestaurantModel> mData;
     RestaurantAdapter adapter;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
     @BindView(R.id.restaurant_recycler)
     RecyclerView restaurantRecycler;
     @BindView(R.id.progressBar)
@@ -45,14 +43,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        setSupportActionBar(toolbar);
         init();
 
         String categoryId = getIntent().getStringExtra("category_id");
-        String categoryName = getIntent().getStringExtra("category_name");
-        getSupportActionBar().setTitle(categoryName);
-        getSupportActionBar().setHomeButtonEnabled(true);
-
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
 
         Call<RestaurantResponse> call = apiService.getAllRestaurantsInCategory(categoryId);

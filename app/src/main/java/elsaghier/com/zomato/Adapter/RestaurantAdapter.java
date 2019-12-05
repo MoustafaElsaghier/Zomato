@@ -42,7 +42,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<elsaghier.com.zomato
         holder.setName(restaurant.getName());
         holder.setAddress(restaurant.getLocation().getLocality().concat(", ".concat(restaurant.getLocation().getCity())));
         holder.setCost("Cuisines :  " + restaurant.getCuisines() + restaurant.getCurrency());
-        holder.setRating(restaurant.getUserRating().getRatingText());
+        holder.setRating(restaurant.getUserRating().getAggregateRating());
         if (restaurant.getPhotos().get(0).getPhoto().getUrl().isEmpty())
             holder.restaurantImg.setImageResource(R.mipmap.ic_launcher);
         else

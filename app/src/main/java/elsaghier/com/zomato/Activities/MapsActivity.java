@@ -47,7 +47,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public void setData() {
         res_address.setText(restaurant.getLocation().getAddress());
-        res_rate.setText(restaurant.getUserRating().getRatingText());
+        res_rate.setText(restaurant.getUserRating().getAggregateRating());
         res_name.setText(restaurant.getName());
         if (restaurant.getPhotos().get(0).getPhoto().getUrl().isEmpty())
             res_img.setImageResource(R.mipmap.ic_launcher);
