@@ -40,22 +40,18 @@ public class RestaurantAdapter extends RecyclerView.Adapter<elsaghier.com.zomato
         final RestaurantModel.Restaurant restaurant = mData.get(position).getRestaurant();
 
         holder.setName(restaurant.getName());
-        holder.setAddress(restaurant.getLocation().getAddress());
+        holder.setAddress(restaurant.getLocation().getLocality().concat(", ".concat(restaurant.getLocation().getCity())));
         holder.setCost("Cuisines :  " + restaurant.getCuisines() + restaurant.getCurrency());
-        holder.setRating(restaurant.getUserRating().getAggregateRating());
+        holder.setRating(restaurant.getUserRating().getRatingText());
         if (restaurant.getPhotos().get(0).getPhoto().getUrl().isEmpty())
             holder.restaurantImg.setImageResource(R.mipmap.ic_launcher);
         else
             Glide.with(mContext).load(restaurant.getPhotos().get(0).getPhoto().getUrl()).into(holder.restaurantImg);
 
-
-        holder.setItemClick(new RecyclerItemClick() {
-            @Override
-            public void onItemClicked(int pos) {
-                Intent i = new Intent(mContext, MapsActivity.class);
-                i.putExtra("rest_item", restaurant);
-                mContext.startActivity(i);
-            }
+        holder.setItemClick(pos -> {
+            Intent i = new Intent(mContext, MapsActivity.class);
+            i.putExtra("rest_item", restaurant);
+            mContext.startActivity(i);
         });
     }
 

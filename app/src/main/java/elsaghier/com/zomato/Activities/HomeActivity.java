@@ -54,7 +54,7 @@ public class HomeActivity extends AppCompatActivity {
         categoryModels.add(model);
 
         model = new CategoryModel();
-        model.setCategoryId("4");
+        model.setCategoryId("2");
         model.setCategoryName("Catching");
         model.setImageRes(R.drawable.ic_night_life);
         categoryModels.add(model);
@@ -72,7 +72,7 @@ public class HomeActivity extends AppCompatActivity {
         categoryModels.add(model);
 
         model = new CategoryModel();
-        model.setCategoryId("7");
+        model.setCategoryId("17");
         model.setCategoryName("Daily Menus");
         model.setImageRes(R.drawable.ic_night_life);
         categoryModels.add(model);
