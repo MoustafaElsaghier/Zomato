@@ -19,7 +19,7 @@ public class RestaurantModel implements Serializable {
         this.restaurant = restaurant;
     }
 
-    public class Location {
+    public class Location implements Serializable {
 
         @SerializedName("address")
         @Expose
@@ -112,7 +112,7 @@ public class RestaurantModel implements Serializable {
 
     }
 
-    public class Photo {
+    public class Photo implements Serializable{
 
         @SerializedName("photo")
         @Expose
@@ -128,7 +128,7 @@ public class RestaurantModel implements Serializable {
 
     }
 
-    public class Photo_ {
+    public class Photo_ implements Serializable {
 
         @SerializedName("id")
         @Expose
@@ -270,7 +270,7 @@ public class RestaurantModel implements Serializable {
 
     }
 
-    public class UserRating {
+    public class UserRating implements Serializable {
 
         @SerializedName("aggregate_rating")
         @Expose
